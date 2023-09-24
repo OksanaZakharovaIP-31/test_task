@@ -33,13 +33,13 @@ class Tasks(models.Model):
 
 
 class TaskInProduct(models.Model):
-    task_id = models.ForeignKey(User, verbose_name='Урок')
-    product_id = models.ForeignKey(Products, verbose_name='Продукт')
+    task_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Урок')
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Продукт')
 
 
 class TaskUser(models.Model):
-    user_id = models.ForeignKey(User, verbose_name='Пользователь')
-    task_id = models.ForeignKey(Tasks, verbose_name='Урок')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    task_id = models.ForeignKey(Tasks, on_delete=models.CASCADE, verbose_name='Урок')
     is_watched = models.BooleanField(verbose_name='Просмотр')
     last_watched = models.DateTimeField(verbose_name='Дата последнего просмотра')
     sec_watched = models.PositiveIntegerField(verbose_name='Просмотр в секундах')
@@ -47,16 +47,22 @@ class TaskUser(models.Model):
 
 
 class ProductUser(models.Model):
-    PERMISSION_DICT = {
-        'w': 'wait',
-        'p': 'permissoin'
-    }
-    product_id = models.ForeignKey(Products, verbose_name='Продутк')
-    user_id = models.ForeignKey(User, verbose_name='Пользователь')
-    permission = models.CharField(choices=PERMISSION_DICT, default='w', verbose_name='Разрешение')
+    PERMISSION_ = [
+        ('w', 'wait'),
+        ('p', 'permissoin')
+    ]
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Продукт')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    permission = models.CharField(max_length=1, choices=PERMISSION_, default='w', verbose_name='Разрешение')
 
 
 class Notifications(models.Model):
-    user_to = models.ForeignKey(User, verbose_name='От кого')
-    user_from = models.ForeignKey(User, verbose_name='Кому')
-    product_id = models.ForeignKey(Products, verbose_name='Доступ к какому продукту')
+    user_to = models.ForeignKey(User,
+                                on_delete=models.CASCADE,
+                                related_name='От_кого',
+                                verbose_name='От кого')
+    user_from = models.ForeignKey(User,
+                                  on_delete=models.CASCADE,
+                                  related_name='Кому',
+                                  verbose_name='Кому')
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Доступ к какому продукту')
