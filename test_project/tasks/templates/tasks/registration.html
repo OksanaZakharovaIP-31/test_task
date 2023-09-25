@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "tasks/sample.html" %}
 {% block title %}
 Регистрация
@@ -5,6 +6,7 @@
 {% block body %}
 <p>
 <form action="" method="POST">
+
         {% csrf_token %}
             <input type="login" size="40" name="login" placeholder="Login"><br><br>
             <input STYLE="ALIGN='LEFT'" type="password" size="40" name="password" placeholder="Password"><br><br>
@@ -13,5 +15,7 @@
             <input STYLE="ALIGN='LEFT'"  size="40" name="last_name" placeholder="Last Name"><br><br>
             <input style="" type="submit" size="100" value="Зарегистрироваться" class="btn btn-primary">
         </form>
+
 </p>
 {% endblock %}
+
