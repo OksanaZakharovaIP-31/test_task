@@ -1,0 +1,14 @@
+{% extends "tasks/sample.html" %}
+{% block title %}
+Вход
+{% endblock %}
+{% block body %}
+<p>
+        <form action="" method="POST">
+        {% csrf_token %}
+            <input type="login" size="40" name="login" placeholder="Login"><br><br>
+            <input STYLE="ALIGN='LEFT'" type="password" size="40" name="password" placeholder="Password"><br><br> <br>
+            <input style="" type="submit" size="100" value="Войти" class="btn btn-primary">
+        </form>
+        </p>
+{% endblock %}
