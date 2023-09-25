@@ -11,6 +11,6 @@ def index(request):
 def entry(request):
     return render(request, 'tasks/entry.html')
 
-d
+
 def registration(request):
     return render(request, 'tasks/registration.html')
